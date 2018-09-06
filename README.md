@@ -42,6 +42,7 @@ Just look at all the content of the relation:
 
 - If we know the column number (in this case, 1):
 
+
     cut -f1 customer.tsv
 
     CustomerName
@@ -53,9 +54,11 @@ Just look at all the content of the relation:
 
 - The same output with `awk`:
 
+
     awk -F'\t' '{print $2}' customers.tsv
 
 - If you strictly need to make queries by column name, you can use:
+
 
     awk -F'\t' -vcol=CustomerName '(NR==1){colnum=-1;for(i=1;i<=NF;i++)if($(i)==col)colnum=i;}{print $(colnum)}' customers.tsv
 
@@ -68,6 +71,7 @@ Notice: you can explicitly specify a character delimiter by using the options:
     SELECT CustomerID, CustomerName, ContactName  FROM Customers
 
 - As in the previous case, knowing the column numbers:
+
 
     cut -f1,2,3 customers.tsv
 
@@ -85,9 +89,11 @@ or, equivalently:
 
 - Using `awk`:
 
+
     awk -F'\t' '{print $1FS$2FS$3}' customers.tsv
 
 - By using the column names:
+
 
     awk -F'\t' -vcols=CustomerID,CustomerName,ContactName '(NR==1){n=split(cols,cs,",");for(c=1;c<=n;c++){for(i=1;i<=NF;i++)if($(i)==cs[c])ci[c]=i}}{for(i=1;i<=n;i++)printf "%s" FS,$(ci[i]);printf "\n"}' customers.tsv
 
@@ -99,6 +105,7 @@ or, equivalently:
 For this kind of queries (especially the ones that we implement using sorting) we need to ignore the header row and process it later.
 
 - Using projection with `cut` and removing repetition with `sort -u`:
+
 
     tail -n +2 customers.tsv | cut -f 5  | sort -u
     Berlin
@@ -118,6 +125,7 @@ All at once (i.e. with the header):
 
 - Using `awk`:
 
+
     awk -F'\t' '(NR==1){print $5}(NR!=1){ a[$5]++ } END { print length(a)}' customers.tsv
 
 ### SELECT COUNT(DISTINCT Attribute) FROM Relation;
@@ -126,10 +134,12 @@ All at once (i.e. with the header):
 
 - With `cut`, kust as the previous query (without header), but pipelining with `wc -l`:
 
+
     tail -n +2 customers.tsv | cut -f 5  | sort -u | wc -l
     4
 
 - Using `awk`:
+
 
     awk -F'\t' '(NR==1){print "Count("$5")"}(NR!=1){ a[$5]++ } END { print length(a)}' customers.tsv
 
@@ -139,6 +149,7 @@ All at once (i.e. with the header):
 
 - Using `awk`:
 
+
     awk -F'\t' '$5 == "Berlin" { print }' customers.tsv
     1	Alfreds Futterkiste	Maria Anders	Obere Str. 57	Berlin	12209	Germany
 
@@ -147,6 +158,7 @@ All at once (i.e. with the header):
     SELECT * FROM Customers ORDER BY Country;
 
 - Using `sort`:
+
 
     tail -n +2 customers.tsv  | sort -t$'\t' -k 7
 
