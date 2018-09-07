@@ -10,6 +10,16 @@ We make the following assumptions:
 - The separator for each field is '\t', unless otherwise specified.
 - The first row contains the attributes name.
 
+## Quick reference
+
+[SELECT * FROM  RELATION](#SELECT-FROM-RELATION)
+[SELECT Attribute FROM Relation](#SELECT-Attribute-FROM-Relation)
+[SELECT Attribute1, Attribute2, ... FROM Relation](#SELECT-Attribute1-Attribute2--FROM-Relation)
+[SELECT DISTINCT Attribute FROM Relation;](#SELECT-DISTINCT-Attribute-FROM-Relation)
+[SELECT COUNT(DISTINCT Attribute) FROM Relation;](#SELECT-COUNTDISTINCT-Attribute-FROM-Relation;)
+[SELECT * FROM Relation WHERE Attribute=value;](#SELECT-FROM-Relation-WHERE-Attributevalue;)
+[SELECT * FROM Relation ORDER BY Attribute (ASC|DESC);](select--from-relation-order-by-attribute-ascdesc)
+
 ## Relations examples
 
 Here we provide the definitions of the relations used in this guide:
@@ -118,7 +128,7 @@ All at once (i.e. with the header):
 
 - Using `awk`:
 
-        awk -F'\t' '(NR==1){print $5}(NR!=1){ a[$5]++ } END { print length(a)}' customers.tsv
+        awk -F'\t' '(NR==1){print $5}(NR!=1){ a[$5]++ } END { print length(a) }' customers.tsv
 
 ### SELECT COUNT(DISTINCT Attribute) FROM Relation;
 
@@ -131,7 +141,7 @@ All at once (i.e. with the header):
 
 - Using `awk`:
 
-        awk -F'\t' '(NR==1){print "Count("$5")"}(NR!=1){ a[$5]++ } END { print length(a)}' customers.tsv
+        awk -F'\t' '(NR==1){print "Count("$5")"}(NR!=1){ a[$5]++ } END { print length(a) }' customers.tsv
 
 ### SELECT * FROM Relation WHERE Attribute=value;
 
