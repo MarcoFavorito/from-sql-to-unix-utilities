@@ -13,9 +13,9 @@ We make the following assumptions:
 ## Quick reference
 
 - [SELECT * FROM  RELATION](#select--from--relation)
-- [SELECT Attribute FROM Relation](#select-attribute1-attribute2--from-relation)
-- [SELECT Attribute1, Attribute2, ... FROM Relation](#select-distinct-attribute-from-relation)
-- [SELECT DISTINCT Attribute FROM Relation;](#select-countdistinct-attribute-from-relation)
+- [SELECT Attribute FROM Relation](#select-attribute-from-relation)
+- [SELECT Attribute1, Attribute2, ... FROM Relation](#select-attribute1-attribute2--from-relation)
+- [SELECT DISTINCT Attribute FROM Relation;](#select-distinct-attribute-from-relation)
 - [SELECT COUNT(DISTINCT Attribute) FROM Relation;](#select-countdistinct-attribute-from-relation)
 - [SELECT * FROM Relation WHERE Attribute=value;](#select--from-relation-where-attributevalue)
 - [SELECT * FROM Relation ORDER BY Attribute (ASC|DESC);](#select--from-relation-order-by-attribute-ascdesc)
